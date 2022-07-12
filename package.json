@@ -1,0 +1,30 @@
+{
+  "name": "13.orm",
+  "version": "1.0.0",
+  "description": "Module 13 activity",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charlottearichard/13.ORM.git"
+  },
+  "keywords": [
+    "orm"
+  ],
+  "author": "charlotte richard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/charlottearichard/13.ORM/issues"
+  },
+  "homepage": "https://github.com/charlottearichard/13.ORM#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.3"
+  }
+}

@@ -1,12 +1,19 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
+// hashing users passwords
+const bcrypt = require("bcrypt");
 
 // create our User model
 // the user is an extention or will be created in the form of sequelize's model
 // * Model class tells sequelize about the name of the table,
 // * which collumns it has and its data types. found: https://sequelize.org/docs/v6/core-concepts/model-basics/
 
-class User extends Model {}
+class User extends Model {
+  //this checks passwords and compares it to whats in the database
+  checkPassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.password);
+  }
+}
 
 // define table columns and configuration
 User.init(
@@ -49,6 +56,21 @@ User.init(
     },
   },
   {
+    hooks: {
+      // set up beforeCreate lifecycle "hook" functionality
+      async beforeCreate(newUserData) {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
+      },
+      // set up beforeUpdate lifecycle "hook" functionality
+      async beforeUpdate(updatedUserData) {
+        updatedUserData.password = await bcrypt.hash(
+          updatedUserData.password,
+          10
+        );
+        return updatedUserData;
+      },
+    },
     sequelize,
     timestamps: false,
     freezeTableName: true,

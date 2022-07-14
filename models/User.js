@@ -1,7 +1,8 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
 // hashing users passwords
 const bcrypt = require("bcrypt");
+const sequelize = require("../config/connection");
+
 
 // create our User model
 // the user is an extention or will be created in the form of sequelize's model

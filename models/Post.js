@@ -18,6 +18,7 @@ class Post extends Model {
           "title",
           "created_at",
           [
+            // used to execute a custom SQL query
             sequelize.literal(
               "(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)"
             ),
